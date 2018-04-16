@@ -5,11 +5,24 @@ jobs:
       image: circleci/classic:latest
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/telegram-proxy.tar
       - run:
           name: Build application Docker image
           command: |
             docker build -t telegram-proxy .
-          no_output_timeout: 30m
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/telegram-proxy.tar telegram-proxy
+      - save_cache:
+          key: v1-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/telegram-proxy.tar
       - deploy:
           name: Push application Docker image
           command: |
