@@ -13,9 +13,6 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            version=$(git describe --abbrev=0 --tags)
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker tag telegram-proxy $DOCKER_USER/telegram-proxy:$version
             docker tag telegram-proxy $DOCKER_USER/telegram-proxy:latest
-            docker push $DOCKER_USER/telegram-proxy:$version
             docker push $DOCKER_USER/telegram-proxy:latest
