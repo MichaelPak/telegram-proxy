@@ -20,7 +20,7 @@
   ```sh
   $ ufw allow 1080
   ```
-  3. Запускаем proxy-сервер, заменяя `USERNAME` и `PASSWORD` и лог/пасс:
+  3. Запускаем proxy-сервер, заменяя `{USERNAME}` и `{PASSWORD}` на лог/пасс:
   ```sh
   $ docker run -p 1080:1080 -e "USER={USERNAME}" -e "PASSWD={PASSWORD}" -d  michaelpak/telegram-proxy
   ```
