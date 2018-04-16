@@ -1,6 +1,6 @@
 # telegram-proxy
 [![CircleCI](https://circleci.com/gh/MichaelPak/telegram-proxy.svg?style=svg&circle-token=3684543621903ba626a15384f74be26b10100b3b)](https://circleci.com/gh/MichaelPak/telegram-proxy)
----
+
 В связи с [последними новостями] блокировки Telegram РосКомНадзором, появилась необходимость в создании proxy-сервера.
 
 ## Интродакшн
