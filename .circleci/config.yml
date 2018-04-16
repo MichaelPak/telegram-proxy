@@ -9,7 +9,12 @@ jobs:
           keys:
             - v1-{{ .Branch }}
           paths:
-            - /caches/telegram-proxy.tar
+            - ~/caches/telegram-proxy.tar
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i ~/caches/telegram-proxy.tar | true
       - run:
           name: Build application Docker image
           command: |
@@ -17,12 +22,12 @@ jobs:
       - run:
           name: Save Docker image layer cache
           command: |
-            mkdir -p /caches
-            docker save -o /caches/telegram-proxy.tar telegram-proxy
+            mkdir -p ~/caches
+            docker save -o ~/caches/telegram-proxy.tar telegram-proxy
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
-            - /caches/telegram-proxy.tar
+            - ~/caches/telegram-proxy.tar
       - deploy:
           name: Push application Docker image
           command: |
